@@ -27,6 +27,12 @@ export default new Kapsule({
     onClick: { default: d => {} }
   },
 
+  methods: {
+    getState: function(state) {
+      return state;
+    }
+  },
+
   init(domNode, state) {
     state.cartogram = d3Cartogram()
       .properties(d => d.properties);
