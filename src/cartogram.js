@@ -5,11 +5,10 @@ import { cartogram as d3Cartogram } from 'topogram';
 import Kapsule from 'kapsule';
 import accessorFn from 'accessor-fn';
 
-const ANIMATION_DURATION = 1200;
-
 export default new Kapsule({
 
   props: {
+    animationDuration: { default: 1200 },
     width: { default: window.innerWidth },
     height: { default: window.innerHeight },
     iterations: { default: 20 },
@@ -104,12 +103,13 @@ export default new Kapsule({
       .on('mouseout', () => { state.tooltip.style('display', 'none'); })
       .on('click', d => state.onClick(d));
 
+    console.log(state);
     features.merge(newFeatures)
       .data(state.cartogram
         .iterations(state.iterations) // distort all features
         (state.topoJson, topoObject.geometries).features
       )
-      .transition().duration(ANIMATION_DURATION)
+      .transition().duration(state.animationDuration)
         .style('fill', colorOf)
         .attr('d', state.cartogram.path);
   }
