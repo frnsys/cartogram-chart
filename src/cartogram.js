@@ -103,7 +103,6 @@ export default new Kapsule({
       .on('mouseout', () => { state.tooltip.style('display', 'none'); })
       .on('click', d => state.onClick(d));
 
-    console.log(state);
     features.merge(newFeatures)
       .data(state.cartogram
         .iterations(state.iterations) // distort all features
